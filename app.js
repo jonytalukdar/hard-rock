@@ -9,7 +9,7 @@
 
 const searchSongs = async () => {
   const searchText = document.getElementById('search-field').value;
-  const url = `https://api.lyrics.ovh/suggesst/:${searchText}`;
+  const url = `https://api.lyrics.ovh/suggest/:${searchText}`;
   try {
     const res = await fetch(url);
     const data = await res.json();
