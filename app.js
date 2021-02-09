@@ -1,9 +1,22 @@
+// const searchSongs = async () => {
+//   const searchText = document.getElementById('search-field').value;
+//   const url = `https://api.lyrics.ovh/suggest/:${searchText}`;
+//   fetch(url)
+//     .then((res) => res.json())
+//     .then((data) => displaySongs(data.data))
+//     .catch((error) => errorMessage('Something went wrong with the server'));
+// };
+
 const searchSongs = async () => {
   const searchText = document.getElementById('search-field').value;
-  const url = `https://api.lyrics.ovh/suggest/:${searchText}`;
-  const res = await fetch(url);
-  const data = await res.json();
-  displaySongs(data.data);
+  const url = `https://api.lyrics.ovh/suggesst/:${searchText}`;
+  try {
+    const res = await fetch(url);
+    const data = await res.json();
+    displaySongs(data.data);
+  } catch (error) {
+    errorMessage('somethign error');
+  }
 };
 
 const displaySongs = (songs) => {
@@ -38,4 +51,9 @@ const getLyrics = async (artist, title) => {
 const displayLyrics = (lyrics) => {
   const lyricsDiv = document.getElementById('lyrics');
   lyricsDiv.innerText = lyrics;
+};
+
+const errorMessage = (error) => {
+  const errorTag = document.getElementById('error-message');
+  errorTag.innerText = error;
 };
